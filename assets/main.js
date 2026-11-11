@@ -228,3 +228,21 @@ if(agree&&submitBtn){
     f.addEventListener('submit',function(e){e.preventDefault();send(f,p[1]);});
   });
 })();
+
+/* уведомление о cookie и Яндекс.Метрике: показывается один раз, пока посетитель не нажмёт «Хорошо» */
+(function(){
+  var KEY='sg-cookie-ok';
+  try{ if(localStorage.getItem(KEY))return; }catch(e){}
+  var box=document.createElement('div');
+  box.className='cookie-note';
+  box.setAttribute('role','dialog');
+  box.setAttribute('aria-label','Уведомление о cookie');
+  box.innerHTML='<p>Сайт использует cookie и Яндекс.Метрику, чтобы считать посещения и делать сайт удобнее. Продолжая пользоваться сайтом, вы соглашаетесь с этим. <a href="/privacy.html">Подробнее</a></p><button type="button" class="btn btn-primary">Хорошо</button>';
+  document.body.appendChild(box);
+  requestAnimationFrame(function(){ box.classList.add('show'); });
+  box.querySelector('button').addEventListener('click',function(){
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+    box.classList.remove('show');
+    setTimeout(function(){ box.remove(); },300);
+  });
+})();
