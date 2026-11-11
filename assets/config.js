@@ -3,5 +3,5 @@
    Пока он пустой, форма открывает почтовую программу с готовым письмом на EMAIL. */
 window.SITE_CONFIG = {
   FORM_ENDPOINT: '',
-  EMAIL: 'hello@example.com'
+  EMAIL: 'sonyagranina.work@gmail.com'
 };

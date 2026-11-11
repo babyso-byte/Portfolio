@@ -186,7 +186,7 @@ if(agree&&submitBtn){
     function done(){ if(ok){ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});} form.reset(); if(btn)btn.disabled=true; }
     if(cfg.FORM_ENDPOINT){
       if(btn)btn.disabled=true;
-      fetch(cfg.FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
+      fetch(cfg.FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},
         body:JSON.stringify({kind:kind,page:location.href,fields:fields})})
       .then(function(r){ if(!r.ok)throw new Error(r.status); done(); })
       .catch(function(){ if(btn)btn.disabled=false; mail(); });
