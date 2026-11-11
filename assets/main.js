@@ -208,6 +208,14 @@ if(agree&&submitBtn){
       var body=fields.map(function(f){return f[0]+': '+f[1];}).join('\n');
       location.href='mailto:'+(cfg.EMAIL||'')+'?subject='+encodeURIComponent(kind==='brief'?'Бриф с сайта':'Заявка с сайта')+'&body='+encodeURIComponent(body);
     }
+    if(cfg.FORM_ENDPOINT){                             /* основной путь: функция в Яндекс Облаке */
+      if(btn)btn.disabled=true;
+      fetch(cfg.FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},
+        body:JSON.stringify({kind:kind,page:location.href,fields:fields})})
+      .then(function(r){ if(!r.ok)throw new Error(r.status); done(); })
+      .catch(function(){ if(btn)btn.disabled=false; mail(); });
+      return;
+    }
     if(!(cfg.TG_TOKEN&&cfg.TG_CHAT_ID)){ mail(); return; }
     var lines=[kind==='brief'?'📋 <b>Новый бриф с сайта</b>':'✉️ <b>Новая заявка с сайта</b>',''];
     fields.forEach(function(f){lines.push('<b>'+esc(f[0])+':</b> '+esc(f[1]));});
