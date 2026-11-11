@@ -4,6 +4,8 @@
 //   BOT_TOKEN — токен бота от @BotFather
 //   CHAT_ID   — ваш числовой id в телеграме
 //   ALLOWED_ORIGIN — адрес сайта, с которого принимать заявки (необязательно)
+//   BUCKET    — имя бакета Object Storage, куда сохраняется каждая заявка (хранение в России)
+// Чтобы сохранение работало, функции назначается сервисный аккаунт с ролью storage.uploader.
 
 const MAX = 3900; // запас до лимита сообщения Telegram (4096)
 
@@ -34,7 +36,22 @@ async function tg(text) {
   }
 }
 
-module.exports.handler = async function (event) {
+async function store(record, context) {
+  const bucket = process.env.BUCKET;
+  const token = context && context.token && context.token.access_token;
+  if (!bucket || !token) throw new Error('storage not configured');
+  const d = new Date();
+  const key = `leads/${d.toISOString().slice(0, 7)}/${d.toISOString().replace(/[:.]/g, '-')}-${Math.random().toString(36).slice(2, 8)}.json`;
+  const r = await fetch(`https://storage.yandexcloud.net/${bucket}/${key}`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json; charset=utf-8' },
+    body: JSON.stringify(record, null, 2)
+  });
+  if (!r.ok) throw new Error('storage ' + r.status + ' ' + (await r.text()));
+  return key;
+}
+
+module.exports.handler = async function (event, context) {
   const origin = (event.headers && (event.headers.Origin || event.headers.origin)) || '';
   const allowed = process.env.ALLOWED_ORIGIN || '*';
   const cors = {
@@ -66,11 +83,20 @@ module.exports.handler = async function (event) {
   }
   if (data.page) lines.push('', `<i>${esc(String(data.page).slice(0, 200))}</i>`);
 
+  // 1) сначала сохраняем заявку в хранилище в России
+  const record = { received: new Date().toISOString(), kind: data.kind || 'contact', page: data.page || '', fields };
   try {
-    await tg(lines.join('\n'));
-    return reply(200, { ok: true });
+    const key = await store(record, context);
+    lines.push(`<i>сохранено: ${esc(key)}</i>`);
   } catch (e) {
     console.error(e);
     return reply(502, { ok: false });
   }
+  // 2) затем уведомление в телеграм
+  try {
+    await tg(lines.join('\n'));
+  } catch (e) {
+    console.error(e); // заявка уже сохранена, поэтому отвечаем успехом
+  }
+  return reply(200, { ok: true });
 };
