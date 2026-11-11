@@ -4,6 +4,6 @@
    Пока что-то из этого пустое или телеграм недоступен, форма открывает готовое письмо на EMAIL. */
 window.SITE_CONFIG = {
   TG_TOKEN: '',
-  TG_CHAT_ID: '',
+  TG_CHAT_ID: '1651201433',
   EMAIL: 'sonyagranina.work@gmail.com'
 };
