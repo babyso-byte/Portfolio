@@ -3,7 +3,7 @@
 // Секреты задаются в переменных окружения функции, в коде их нет:
 //   BOT_TOKEN — токен бота от @BotFather
 //   CHAT_ID   — ваш числовой id в телеграме
-//   ALLOWED_ORIGIN — адрес сайта, с которого принимать заявки (необязательно)
+//   ALLOWED_ORIGIN — адреса сайта через запятую, с которых принимать заявки (необязательно)
 //   BUCKET    — имя бакета Object Storage, куда сохраняется каждая заявка (хранение в России)
 // Чтобы сохранение работало, функции назначается сервисный аккаунт с ролью storage.uploader.
 
@@ -53,9 +53,12 @@ async function store(record, context) {
 
 module.exports.handler = async function (event, context) {
   const origin = (event.headers && (event.headers.Origin || event.headers.origin)) || '';
-  const allowed = process.env.ALLOWED_ORIGIN || '*';
+  const list = (process.env.ALLOWED_ORIGIN || '*').split(',').map(s => s.trim()).filter(Boolean);
+  const anyOrigin = list.includes('*');
+  const okOrigin = anyOrigin || !origin || list.includes(origin);
   const cors = {
-    'Access-Control-Allow-Origin': allowed === '*' ? '*' : allowed,
+    'Access-Control-Allow-Origin': anyOrigin ? '*' : (list.includes(origin) ? origin : list[0]),
+    'Vary': 'Origin',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type'
   };
@@ -63,7 +66,7 @@ module.exports.handler = async function (event, context) {
 
   if (event.httpMethod === 'OPTIONS') return { statusCode: 204, headers: cors, body: '' };
   if (event.httpMethod !== 'POST') return reply(405, { ok: false });
-  if (allowed !== '*' && origin && origin !== allowed) return reply(403, { ok: false });
+  if (!okOrigin) return reply(403, { ok: false });
 
   let data;
   try {
