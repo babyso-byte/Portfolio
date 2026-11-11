@@ -1,9 +1,8 @@
 /* Настройки сайта — меняются здесь, в одном месте.
-   TG_TOKEN   — токен бота @granina_site_bot от @BotFather (вставьте между кавычками)
-   TG_CHAT_ID — ваш числовой id (его присылает @userinfobot)
-   Пока что-то из этого пустое или телеграм недоступен, форма открывает готовое письмо на EMAIL. */
+   FORM_ENDPOINT — функция в Яндекс Облаке: сохраняет заявку в хранилище в России и присылает её в телеграм.
+   Токен бота хранится только в настройках функции, на сайте его нет.
+   Если функция недоступна, форма откроет готовое письмо на EMAIL. */
 window.SITE_CONFIG = {
-  TG_TOKEN: '9192846909:AAEqOJwT5pFiuVXXqlQRfpLgSCSsU2uqWHc',
-  TG_CHAT_ID: '1651201433',
+  FORM_ENDPOINT: 'https://functions.yandexcloud.net/d4ek9tmkm4q0mug12708',
   EMAIL: 'sonyagranina.work@gmail.com'
 };
