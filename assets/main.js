@@ -162,39 +162,58 @@ if(agree&&submitBtn){
   recalc();
 })();
 
-/* ---- отправка форм ---- */
+/* ---- отправка форм в Telegram ---- */
 (function(){
   function collect(form){
     var out=[],seen={};
     form.querySelectorAll('input,select,textarea').forEach(function(el){
-      if(!el.name||el.type==='hidden'&&el.name!=='Страница')return;
+      if(!el.name||el.name==='website')return;
+      if(el.type==='hidden'&&el.name!=='Страница')return;
       if((el.type==='checkbox'||el.type==='radio')&&!el.checked)return;
       var v=(el.value||'').trim(); if(!v)return;
-      var key=el.name;
-      if(seen[key]!==undefined){out[seen[key]][1]+=', '+v;}
-      else{seen[key]=out.length;out.push([key,v]);}
+      if(seen[el.name]!==undefined){out[seen[el.name]][1]+=', '+v;}
+      else{seen[el.name]=out.length;out.push([el.name,v]);}
     });
     return out;
+  }
+  function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function chunks(text){
+    var out=[],cur='';
+    text.split('\n').forEach(function(line){
+      if((cur+'\n'+line).length>3900){out.push(cur);cur=line;}
+      else cur=cur?cur+'\n'+line:line;
+    });
+    if(cur)out.push(cur); return out;
+  }
+  function tg(cfg,text){
+    var parts=chunks(text), i=0;
+    function next(){
+      if(i>=parts.length)return Promise.resolve();
+      var body=new URLSearchParams({chat_id:cfg.TG_CHAT_ID,text:parts[i++],parse_mode:'HTML',disable_web_page_preview:'true'});
+      return fetch('https://api.telegram.org/bot'+cfg.TG_TOKEN+'/sendMessage',{method:'POST',body:body})
+        .then(function(r){return r.json();})
+        .then(function(j){if(!j.ok)throw new Error(j.description||'telegram');return next();});
+    }
+    return next();
   }
   function send(form,kind){
     var btn=form.querySelector('[type="submit"]');
     var ok=form.querySelector('.form-success');
     var trap=form.querySelector('input[name="website"]');
-    if(trap&&trap.value)return;               /* ловушка для спам-ботов */
+    if(trap&&trap.value)return;                       /* ловушка для спам-ботов */
     var fields=collect(form);
     var cfg=window.SITE_CONFIG||{};
     function done(){ if(ok){ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});} form.reset(); if(btn)btn.disabled=true; }
-    if(cfg.FORM_ENDPOINT){
-      if(btn)btn.disabled=true;
-      fetch(cfg.FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=UTF-8'},
-        body:JSON.stringify({kind:kind,page:location.href,fields:fields})})
-      .then(function(r){ if(!r.ok)throw new Error(r.status); done(); })
-      .catch(function(){ if(btn)btn.disabled=false; mail(); });
-    } else { mail(); done(); }
     function mail(){
       var body=fields.map(function(f){return f[0]+': '+f[1];}).join('\n');
       location.href='mailto:'+(cfg.EMAIL||'')+'?subject='+encodeURIComponent(kind==='brief'?'Бриф с сайта':'Заявка с сайта')+'&body='+encodeURIComponent(body);
     }
+    if(!(cfg.TG_TOKEN&&cfg.TG_CHAT_ID)){ mail(); done(); return; }
+    var lines=[kind==='brief'?'📋 <b>Новый бриф с сайта</b>':'✉️ <b>Новая заявка с сайта</b>',''];
+    fields.forEach(function(f){lines.push('<b>'+esc(f[0])+':</b> '+esc(f[1]));});
+    lines.push('','<i>'+esc(location.href)+'</i>');
+    if(btn)btn.disabled=true;
+    tg(cfg,lines.join('\n')).then(done).catch(function(){ if(btn)btn.disabled=false; mail(); });
   }
   [['contact-form','contact'],['brief-form','brief']].forEach(function(p){
     var f=document.getElementById(p[0]); if(!f)return;
