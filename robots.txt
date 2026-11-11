@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /works/
+Disallow: /backend/
+
+Sitemap: https://sonyagranina.ru/sitemap.xml
