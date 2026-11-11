@@ -208,7 +208,7 @@ if(agree&&submitBtn){
       var body=fields.map(function(f){return f[0]+': '+f[1];}).join('\n');
       location.href='mailto:'+(cfg.EMAIL||'')+'?subject='+encodeURIComponent(kind==='brief'?'Бриф с сайта':'Заявка с сайта')+'&body='+encodeURIComponent(body);
     }
-    if(!(cfg.TG_TOKEN&&cfg.TG_CHAT_ID)){ mail(); done(); return; }
+    if(!(cfg.TG_TOKEN&&cfg.TG_CHAT_ID)){ mail(); return; }
     var lines=[kind==='brief'?'📋 <b>Новый бриф с сайта</b>':'✉️ <b>Новая заявка с сайта</b>',''];
     fields.forEach(function(f){lines.push('<b>'+esc(f[0])+':</b> '+esc(f[1]));});
     lines.push('','<i>'+esc(location.href)+'</i>');
