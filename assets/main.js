@@ -229,19 +229,35 @@ if(agree&&submitBtn){
   });
 })();
 
-/* уведомление о cookie и Яндекс.Метрике: показывается один раз, пока посетитель не нажмёт «Хорошо» */
+/* cookie и Яндекс.Метрика: счётчик включается только после согласия посетителя */
 (function(){
-  var KEY='sg-cookie-ok';
-  try{ if(localStorage.getItem(KEY))return; }catch(e){}
+  var KEY='sg-cookie', ID=114194557;
+  function get(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function set(v){ try{ localStorage.setItem(KEY,v); }catch(e){} }
+  function metrika(){
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id='+ID, 'ym');
+    ym(ID, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  }
+  var v=get();
+  if(v==='yes'){ metrika(); return; }
+  if(v==='no') return;
   var box=document.createElement('div');
   box.className='cookie-note';
   box.setAttribute('role','dialog');
-  box.setAttribute('aria-label','Уведомление о cookie');
-  box.innerHTML='<p>Сайт использует cookie и Яндекс.Метрику, чтобы считать посещения и делать сайт удобнее. Продолжая пользоваться сайтом, вы соглашаетесь с этим. <a href="/privacy.html">Подробнее</a></p><button type="button" class="btn btn-primary">Хорошо</button>';
+  box.setAttribute('aria-label','Согласие на cookie');
+  box.innerHTML='<p>Можно я буду считать посещения с помощью cookie и Яндекс.Метрики? Это помогает делать сайт удобнее. <a href="/privacy.html">Подробнее</a></p>'+
+    '<div class="cookie-btns"><button type="button" class="btn btn-primary" data-v="yes">Принять</button><button type="button" class="btn btn-ghost" data-v="no">Отказаться</button></div>';
   document.body.appendChild(box);
   requestAnimationFrame(function(){ box.classList.add('show'); });
-  box.querySelector('button').addEventListener('click',function(){
-    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+  box.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b)return;
+    set(b.getAttribute('data-v'));
+    if(b.getAttribute('data-v')==='yes') metrika();
     box.classList.remove('show');
     setTimeout(function(){ box.remove(); },300);
   });
