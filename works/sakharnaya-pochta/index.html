@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>сахарная почта — бенто-торты на заказ, Санкт-Петербург</title>
+<meta name="description" content="Маленькие бенто-торты с надписью. Пеку одна, один заказ в день. Малина, манго-кокос-маракуйя, голубика, сникерс.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Onest:wght@300;400;500;600&family=Yeseva+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFFBF7;
+  --milk:#FFF6F0;
+  --rose:#FF8FB4;
+  --rose-deep:#E2558A;
+  --lilac:#B9BEE6;
+  --sky:#CFE6F3;
+  --butter:#FBEBB0;
+  --ink:#4A3543;
+  --ink-soft:#967F8E;
+  --line:rgba(74,53,67,.12);
+  --r-lg:34px;
+  --r-md:22px;
+  --r-sm:14px;
+  --shadow:0 18px 44px -24px rgba(174,106,140,.55);
+  --shadow-lift:0 30px 60px -28px rgba(174,106,140,.75);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:'Onest',-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-weight:400;
+  font-size:17px;
+  line-height:1.65;
+  color:var(--ink);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(58% 46% at 12% 4%, #FFE1EC 0%, rgba(255,225,236,0) 62%),
+    radial-gradient(50% 40% at 92% 12%, #E7E6FA 0%, rgba(231,230,250,0) 60%),
+    radial-gradient(60% 44% at 78% 52%, #DCEEF8 0%, rgba(220,238,248,0) 58%),
+    radial-gradient(52% 40% at 6% 62%, #FDF1CE 0%, rgba(253,241,206,0) 60%),
+    radial-gradient(70% 50% at 50% 100%, #FFE6EE 0%, rgba(255,230,238,0) 60%),
+    linear-gradient(180deg,#FFFBF7 0%,#FFF7FA 45%,#FBF7FF 100%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1120px,92vw);margin-inline:auto}
+
+/* ---------- typography ---------- */
+h1,h2,h3{font-family:'Yeseva One',Georgia,serif;font-weight:400;line-height:1.06;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2.7rem,7.2vw,5.1rem)}
+h2{font-size:clamp(2rem,4.4vw,3.1rem)}
+h3{font-size:1.32rem;line-height:1.2}
+p{margin:0}
+.eyebrow{
+  font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;
+  color:var(--rose-deep);display:flex;align-items:center;gap:.6em;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--rose)}
+.lead{font-size:clamp(1.02rem,1.5vw,1.16rem);color:var(--ink-soft);max-width:46ch}
+.script{font-family:'Caveat',cursive}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(255,251,247,.72);
+  border-bottom:1px solid rgba(74,53,67,.07);
+}
+.nav-in{display:flex;align-items:center;gap:1.6rem;padding:.85rem 0}
+.brand{
+  font-family:'Caveat',cursive;font-size:1.72rem;font-weight:700;line-height:1;
+  color:var(--rose-deep);text-decoration:none;margin-right:auto;white-space:nowrap;
+}
+.brand span{display:block;font-family:'Onest',sans-serif;font-size:.58rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-top:.15rem}
+.nav-links{display:flex;gap:1.5rem;font-size:.92rem}
+.nav-links a{text-decoration:none;color:var(--ink-soft);transition:color .2s}
+.nav-links a:hover{color:var(--rose-deep)}
+.nav .btn{padding:.55rem 1.2rem;font-size:.9rem}
+@media(max-width:820px){.nav-links{display:none}}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  font-family:'Onest',sans-serif;font-size:1rem;font-weight:500;
+  padding:.95rem 1.9rem;border-radius:999px;border:0;cursor:pointer;
+  color:#fff;text-decoration:none;
+  background:linear-gradient(135deg,#FF9EC0 0%,#F27CA6 52%,#E2558A 100%);
+  box-shadow:0 14px 30px -14px rgba(226,85,138,.85);
+  transition:transform .22s cubic-bezier(.2,.9,.3,1.2),box-shadow .22s;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 20px 38px -16px rgba(226,85,138,.9)}
+.btn:active{transform:translateY(0)}
+.btn-ghost{
+  background:rgba(255,255,255,.75);color:var(--ink);
+  border:1px solid var(--line);box-shadow:none;
+}
+.btn-ghost:hover{box-shadow:var(--shadow);background:#fff}
+:focus-visible{outline:2.5px solid var(--rose-deep);outline-offset:3px;border-radius:6px}
+
+/* ---------- sections ---------- */
+section{padding:clamp(4.5rem,9vw,7.5rem) 0}
+.sec-head{max-width:56ch;margin-bottom:clamp(2.2rem,4vw,3.4rem);display:grid;gap:1rem}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(3rem,6vw,5rem);padding-bottom:clamp(3.5rem,6vw,5.5rem)}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero-copy{display:grid;gap:1.5rem;justify-items:start}
+h1 .accent{color:var(--rose-deep)}
+.hero-note{
+  display:flex;align-items:center;gap:.6rem;font-size:.9rem;color:var(--ink-soft);
+  background:rgba(255,255,255,.66);border:1px solid var(--line);
+  padding:.5rem .95rem .5rem .6rem;border-radius:999px;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:#8FD3A8;box-shadow:0 0 0 4px rgba(143,211,168,.25);flex:none}
+
+/* live cake */
+.cake-stage{position:relative}
+.cake-card{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:var(--shadow-lift);background:#fff;transform:rotate(-1.4deg);
+}
+.cake-card img{width:100%;height:auto}
+.icing{
+  position:absolute;left:50%;top:47%;width:74%;
+  transform:translate(-50%,-50%) rotate(-9deg);
+  text-align:center;pointer-events:none;
+  font-family:'Caveat',cursive;font-weight:600;
+  font-size:clamp(1.35rem,3.1vw,2.15rem);line-height:1.12;
+  color:#F0619A;
+  text-shadow:0 1px 0 #FFB6D0, 0 2px 1px rgba(200,60,110,.35), 0 4px 8px rgba(226,85,138,.22);
+  word-break:break-word;
+}
+.writer{
+  margin-top:1.5rem;background:rgba(255,255,255,.78);border:1px solid var(--line);
+  border-radius:var(--r-md);padding:1.05rem 1.15rem;box-shadow:var(--shadow);
+  backdrop-filter:blur(8px);
+}
+.writer label{display:block;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:500;margin-bottom:.55rem}
+.writer input{
+  width:100%;border:0;border-bottom:1.5px dashed rgba(226,85,138,.45);background:transparent;
+  font-family:'Caveat',cursive;font-size:1.5rem;color:var(--rose-deep);padding:.15rem 0 .35rem;
+}
+.writer input:focus{outline:none;border-bottom-color:var(--rose-deep)}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.85rem}
+.chip{
+  font-size:.85rem;padding:.32rem .8rem;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(226,85,138,.28);background:rgba(255,255,255,.7);
+  color:var(--rose-deep);font-family:'Onest',sans-serif;transition:background .2s,transform .2s;
+}
+.chip:hover{background:#FFEAF2;transform:translateY(-1px)}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:2.6rem}
+  .cake-stage{order:-1;max-width:460px;width:100%}
+}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;counter-reset:s}
+.step{
+  background:rgba(255,255,255,.6);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:1.5rem 1.4rem;display:grid;gap:.5rem;align-content:start;
+}
+.step-num{
+  font-family:'Yeseva One',serif;font-size:1.6rem;color:var(--rose);line-height:1;
+}
+.step p{font-size:.95rem;color:var(--ink-soft)}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+
+/* ---------- fillings ---------- */
+.fillings{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.1rem,2.4vw,1.9rem)}
+.fill{
+  background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:var(--r-lg);
+  overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
+  transition:transform .35s cubic-bezier(.2,.9,.3,1.1),box-shadow .35s;
+}
+.fill:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+.fill-ph{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--milk)}
+.fill-ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.9,.3,1)}
+.fill:hover .fill-ph img{transform:scale(1.045)}
+.tag{
+  position:absolute;top:.9rem;left:.9rem;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:500;padding:.35rem .8rem;border-radius:999px;color:var(--ink);
+  background:rgba(255,255,255,.9);backdrop-filter:blur(6px);
+}
+.fill-body{padding:1.5rem 1.5rem 1.7rem;display:grid;gap:.7rem;align-content:start;flex:1}
+.fill-body p{font-size:.96rem;color:var(--ink-soft)}
+.meter{display:flex;align-items:center;gap:.75rem;margin-top:.35rem;font-size:.8rem;color:var(--ink-soft);
+  letter-spacing:.08em;text-transform:uppercase}
+.cubes{display:flex;gap:5px}
+.cube{width:11px;height:11px;border-radius:3px;background:rgba(226,85,138,.18)}
+.cube.on{background:linear-gradient(135deg,#FFA8C6,#E2558A)}
+@media(max-width:720px){.fillings{grid-template-columns:1fr}}
+
+/* ---------- decor ---------- */
+.decor{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+.dec{display:grid;gap:.85rem}
+.dec-ph{border-radius:var(--r-md);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow);background:var(--milk)}
+.dec-ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.9,.3,1)}
+.dec:hover .dec-ph img{transform:scale(1.05)}
+.dec h3{font-size:1.08rem}
+.dec p{font-size:.9rem;color:var(--ink-soft)}
+.price-add{font-size:.86rem;color:var(--rose-deep);font-weight:500}
+@media(max-width:900px){.decor{grid-template-columns:repeat(2,1fr);gap:1.4rem}}
+@media(max-width:480px){.decor{grid-template-columns:1fr}}
+
+/* ---------- prices ---------- */
+.price-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.2rem,3vw,2.2rem);align-items:start}
+.panel{
+  background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:clamp(1.6rem,3vw,2.4rem);box-shadow:var(--shadow);
+}
+.panel h3{margin-bottom:1.2rem}
+.rows{display:grid;gap:.15rem}
+.row{display:flex;align-items:baseline;gap:.8rem;padding:.85rem 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.row .name{font-weight:500}
+.row .desc{font-size:.86rem;color:var(--ink-soft);display:block;font-weight:400}
+.row .dots{flex:1;border-bottom:1px dotted rgba(74,53,67,.25);transform:translateY(-4px)}
+.row .val{font-family:'Yeseva One',serif;color:var(--rose-deep);white-space:nowrap;font-size:1.05rem}
+.terms{display:grid;gap:.9rem}
+.term{display:grid;grid-template-columns:auto 1fr;gap:.75rem;align-items:start;font-size:.95rem}
+.term b{font-weight:500}
+.term span.k{color:var(--rose);font-size:1.1rem;line-height:1.3}
+.term small{display:block;color:var(--ink-soft);font-size:.86rem}
+@media(max-width:860px){.price-grid{grid-template-columns:1fr}}
+
+/* ---------- form ---------- */
+.order{position:relative}
+.order-card{
+  background:linear-gradient(150deg,rgba(255,255,255,.88),rgba(255,247,251,.8));
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:clamp(1.6rem,4vw,3.2rem);box-shadow:var(--shadow-lift);
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.15rem 1.3rem}
+.field{display:grid;gap:.45rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.79rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+.field input,.field select,.field textarea{
+  font-family:'Onest',sans-serif;font-size:1rem;color:var(--ink);
+  background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:var(--r-sm);
+  padding:.82rem .95rem;width:100%;transition:border-color .2s,box-shadow .2s;
+}
+.field textarea{resize:vertical;min-height:88px}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--rose);box-shadow:0 0 0 4px rgba(255,143,180,.18)
+}
+.field .hint{font-size:.82rem;color:var(--ink-soft)}
+.field.err input,.field.err select{border-color:#E2558A;box-shadow:0 0 0 4px rgba(226,85,138,.14)}
+.err-msg{font-size:.82rem;color:#D0417B;display:none}
+.field.err .err-msg{display:block}
+.radio-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.radio-row label{
+  font-size:.93rem;letter-spacing:0;text-transform:none;color:var(--ink);cursor:pointer;
+  padding:.55rem 1.05rem;border-radius:999px;border:1px solid var(--line);
+  background:rgba(255,255,255,.7);transition:all .2s;font-weight:400;
+}
+.radio-row input{position:absolute;opacity:0;pointer-events:none}
+.radio-row input:checked + label{
+  background:linear-gradient(135deg,#FFE3EE,#FFD4E6);border-color:rgba(226,85,138,.45);color:var(--rose-deep);font-weight:500;
+}
+.radio-row input:focus-visible + label{outline:2.5px solid var(--rose-deep);outline-offset:2px}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin-top:1.8rem}
+.total{margin-right:auto;font-size:.95rem;color:var(--ink-soft)}
+.total b{font-family:'Yeseva One',serif;color:var(--rose-deep);font-size:1.4rem;font-weight:400;display:block}
+@media(max-width:720px){.form-grid{grid-template-columns:1fr}}
+
+.result{
+  display:none;margin-top:1.6rem;border-radius:var(--r-md);
+  background:linear-gradient(140deg,#FFF3F8,#F4F1FF);border:1px solid rgba(226,85,138,.25);
+  padding:1.5rem 1.6rem;
+}
+.result.show{display:block;animation:pop .5s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+.result h3{margin-bottom:.5rem}
+.result pre{
+  font-family:'Onest',sans-serif;font-size:.94rem;white-space:pre-wrap;color:var(--ink);
+  background:rgba(255,255,255,.7);border-radius:var(--r-sm);padding:1rem 1.1rem;margin:.9rem 0 1.1rem;
+  border:1px solid var(--line);line-height:1.55;
+}
+.result-actions{display:flex;flex-wrap:wrap;gap:.7rem}
+
+/* ---------- about + faq ---------- */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(1.5rem,4vw,3.4rem);align-items:center}
+.about-ph{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lift);transform:rotate(1.5deg)}
+.about-copy{display:grid;gap:1.1rem}
+.about-copy p{color:var(--ink-soft)}
+.sign{font-family:'Caveat',cursive;font-size:2rem;color:var(--rose-deep);line-height:1}
+.faq{display:grid;gap:.6rem;margin-top:2.6rem}
+details{
+  background:rgba(255,255,255,.62);border:1px solid var(--line);border-radius:var(--r-md);
+  padding:1rem 1.3rem;transition:background .2s;
+}
+details[open]{background:rgba(255,255,255,.85)}
+summary{cursor:pointer;font-weight:500;list-style:none;display:flex;gap:.8rem;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;color:var(--rose);font-size:1.3rem;line-height:1;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:.7rem;font-size:.95rem;color:var(--ink-soft)}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+
+/* ---------- footer ---------- */
+footer{padding:3.5rem 0 4rem;border-top:1px solid var(--line);margin-top:2rem}
+.foot-in{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;justify-content:space-between;
+  font-size:.92rem;color:var(--ink-soft)}
+.foot-links{display:flex;gap:1.3rem}
+.foot-links a{text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--rose-deep)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.9,.3,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">сахарная почта<span>бенто-торты · спб</span></a>
+    <div class="nav-links">
+      <a href="#nachinki">Начинки</a>
+      <a href="#dekor">Декор</a>
+      <a href="#ceny">Цены и сроки</a>
+      <a href="#o-mne">Обо мне</a>
+    </div>
+    <a class="btn" href="#zakaz">Заказать</a>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">пеку одна, один заказ в день</p>
+      <h1>Торт вместо <span class="accent">открытки</span></h1>
+      <p class="lead">Маленький торт на двоих, а сверху — фраза, которую вы придумаете. Иногда это «с днём рождения», а иногда «ты сдал» или «прости, я был неправ». Работает лучше цветов.</p>
+      <div class="hero-note"><span class="dot"></span> Свободные даты на этой неделе: чт, пт, вс</div>
+      <a class="btn" href="#zakaz">Собрать свой торт</a>
+    </div>
+
+    <div class="cake-stage">
+      <div class="cake-card">
+        <img src="img/01-71d06ce858.jpg" alt="Белый бенто-торт с розовой надписью и лилией из крема">
+        <div class="icing" id="icing">с днём рождения</div>
+      </div>
+      <div class="writer">
+        <label for="heroText">Примерьте свою надпись</label>
+        <input id="heroText" type="text" maxlength="28" value="с днём рождения" placeholder="напишите что-нибудь" autocomplete="off">
+        <div class="chips">
+          <button class="chip" type="button" data-t="ты сдал!">ты сдал!</button>
+          <button class="chip" type="button" data-t="просто так">просто так</button>
+          <button class="chip" type="button" data-t="я скучала">я скучала</button>
+          <button class="chip" type="button" data-t="ну наконец-то">ну наконец-то</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="wrap rv">
+  <div class="sec-head">
+    <p class="eyebrow">как это устроено</p>
+    <h2>Три шага и одна ночь в холодильнике</h2>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Вы выбираете</h3>
+      <p>Начинку, декор, дату и надпись — в форме внизу. Если сомневаетесь, напишите повод, и я предложу сама.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Я подтверждаю</h3>
+      <p>Отвечаю в течение дня: свободна ли дата, сколько выйдет, во сколько забирать. Предоплата 50%.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Торт стоит ночь</h3>
+      <p>Собираю накануне, чтобы бисквит пропитался. Утром украшаю, кладу в коробку со свечкой и ложкой.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap rv" id="nachinki">
+  <div class="sec-head">
+    <p class="eyebrow">витрина начинок</p>
+    <h2>Четыре начинки, которые я довела до конца</h2>
+    <p class="lead">Больше не берусь: лучше четыре, которые я знаю наизусть, чем двадцать наугад. Бисквит всегда собственный, крем — на сливочном сыре, красителей в креме нет.</p>
+  </div>
+
+  <div class="fillings">
+    <article class="fill">
+      <div class="fill-ph"><span class="tag">чаще всего берут</span><img src="img/02-8aebb99891.jpg" alt="Срез торта с малиновым конфи и кремом" loading="lazy"></div>
+      <div class="fill-body">
+        <h3>Малина и крем-чиз</h3>
+        <p>Ванильный бисквит, крем на сливочном сыре и малиновое конфи с целыми ягодами. Кислит — так и задумано, иначе получается приторно.</p>
+        <div class="meter">сладость <span class="cubes"><i class="cube on"></i><i class="cube on"></i><i class="cube"></i></span></div>
+      </div>
+    </article>
+
+    <article class="fill">
+      <div class="fill-ph"><span class="tag">на лето</span><img src="img/03-1046b42028.jpg" alt="Срез торта с манго и кокосовым кремом" loading="lazy"></div>
+      <div class="fill-body">
+        <h3>Манго, кокос и маракуйя</h3>
+        <p>Медовый бисквит, кокосовый крем и конфи из манго с маракуйей. Манго кладу кусочками, а не пюре — их видно на срезе и слышно во вкусе.</p>
+        <div class="meter">сладость <span class="cubes"><i class="cube on"></i><i class="cube on"></i><i class="cube"></i></span></div>
+      </div>
+    </article>
+
+    <article class="fill">
+      <div class="fill-ph"><span class="tag">самая тихая</span><img src="img/04-63f1ec8884.jpg" alt="Срез торта с черничным конфи" loading="lazy"></div>
+      <div class="fill-body">
+        <h3>Голубика и черника</h3>
+        <p>Лимонный бисквит, крем-чиз и конфи из двух ягод сразу: голубика даёт мягкость, черника — цвет и глубину. Берут, когда не хотят сладкого совсем.</p>
+        <div class="meter">сладость <span class="cubes"><i class="cube on"></i><i class="cube"></i><i class="cube"></i></span></div>
+      </div>
+    </article>
+
+    <article class="fill">
+      <div class="fill-ph"><span class="tag">с арахисом</span><img src="img/05-99311339fb.jpg" alt="Срез шоколадного торта с карамелью и арахисом" loading="lazy"></div>
+      <div class="fill-body">
+        <h3>Сникерс</h3>
+        <p>Шоколадный бисквит, целый слой чизкейка, солёная карамель и жареный арахис. Тяжёлый в хорошем смысле: одного кусочка правда хватает.</p>
+        <div class="meter">сладость <span class="cubes"><i class="cube on"></i><i class="cube on"></i><i class="cube on"></i></span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap rv" id="dekor">
+  <div class="sec-head">
+    <p class="eyebrow">декор</p>
+    <h2>Четыре способа оформить крышку</h2>
+    <p class="lead">Всё, что вы видите, нарисовано кремом от руки — поэтому два одинаковых торта у меня не выходят. Надпись входит в любой вариант.</p>
+  </div>
+
+  <div class="decor">
+    <article class="dec">
+      <div class="dec-ph"><img src="img/06-7826697a9d.jpg" alt="Бенто-торт с розовыми ракушками и жемчужинами" loading="lazy"></div>
+      <h3>Ракушки и жемчуг</h3>
+      <p>Розовые ракушки, кремовые жемчужины, перламутровый блик. Делаю дольше всего — закладывайте лишний день.</p>
+      <p class="price-add">+ 700 ₽</p>
+    </article>
+
+    <article class="dec">
+      <div class="dec-ph"><img src="img/01-71d06ce858.jpg" alt="Белый бенто-торт с надписью и одной лилией" loading="lazy"></div>
+      <h3>Одна строчка</h3>
+      <p>Чистая крышка, ваша фраза и один цветок сбоку. Если сомневаетесь — берите этот: он идёт кому угодно.</p>
+      <p class="price-add">входит в цену</p>
+    </article>
+
+    <article class="dec">
+      <div class="dec-ph"><img src="img/07-5654ce9a46.jpg" alt="Жёлтый бенто-торт с мелкими розовыми цветочками" loading="lazy"></div>
+      <h3>Мелкие ромашки</h3>
+      <p>Ванильная заливка, россыпь розовых цветочков и надпись коричневым. Самый детский по настроению.</p>
+      <p class="price-add">+ 300 ₽</p>
+    </article>
+
+    <article class="dec">
+      <div class="dec-ph"><img src="img/08-d0beadb190.jpg" alt="Пыльно-синий бенто-торт с кремовыми цветами" loading="lazy"></div>
+      <h3>Сумеречный луг</h3>
+      <p>Пыльно-синий фон, кремовые цветы и сахарный бисер. Для тех, кто устал от розового, но не хочет строгого.</p>
+      <p class="price-add">+ 500 ₽</p>
+    </article>
+  </div>
+</section>
+
+<section class="wrap rv" id="ceny">
+  <div class="sec-head">
+    <p class="eyebrow">цены и сроки</p>
+    <h2>Всё, что нужно знать до того, как писать</h2>
+  </div>
+
+  <div class="price-grid">
+    <div class="panel">
+      <h3>Размеры и цены</h3>
+      <div class="rows">
+        <div class="row">
+          <span class="name">Бенто 12 см<span class="desc">≈ 500 г, на 2–3 человека</span></span>
+          <span class="dots"></span><span class="val">2 400 ₽</span>
+        </div>
+        <div class="row">
+          <span class="name">Бенто макси 14 см<span class="desc">≈ 750 г, на 3–4 человека</span></span>
+          <span class="dots"></span><span class="val">3 100 ₽</span>
+        </div>
+        <div class="row">
+          <span class="name">Круглый торт 16 см<span class="desc">≈ 1,5 кг, на 8–10 человек</span></span>
+          <span class="dots"></span><span class="val">5 400 ₽</span>
+        </div>
+        <div class="row">
+          <span class="name">Надпись от руки<span class="desc">до 28 знаков, любой цвет крема</span></span>
+          <span class="dots"></span><span class="val">0 ₽</span>
+        </div>
+        <div class="row">
+          <span class="name">Коробка, свечка и ложка<span class="desc">кладу в каждый заказ</span></span>
+          <span class="dots"></span><span class="val">0 ₽</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Сроки и условия</h3>
+      <div class="terms">
+        <div class="term"><span class="k">◔</span><div><b>Заказ — минимум за 3 дня.</b><small>Ягоды и сыр я закупаю под конкретный торт, не держу запас.</small></div></div>
+        <div class="term"><span class="k">⚡</span><div><b>Срочно, за сутки — +30%.</b><small>Возможно, если день свободен. Спросите, я честно отвечу.</small></div></div>
+        <div class="term"><span class="k">☾</span><div><b>По понедельникам не пеку.</b><small>Это день закупок и мытья форм. Форма их не примет.</small></div></div>
+        <div class="term"><span class="k">◇</span><div><b>Забрать: Петроградская, 11:00–21:00.</b><small>Точный адрес пришлю после подтверждения.</small></div></div>
+        <div class="term"><span class="k">✿</span><div><b>Доставка по городу — от 400 ₽.</b><small>Везу сама, в термосумке, отдаю в руки.</small></div></div>
+        <div class="term"><span class="k">❄</span><div><b>Живёт 48 часов в холодильнике.</b><small>За полчаса до стола достаньте — крем должен отойти.</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap order rv" id="zakaz">
+  <div class="sec-head">
+    <p class="eyebrow">форма заказа</p>
+    <h2>Соберите торт</h2>
+    <p class="lead">Заполните — я соберу заявку в аккуратный текст, вы отправите его мне в телеграм одним сообщением. Так ничего не теряется.</p>
+  </div>
+
+  <div class="order-card">
+    <form id="orderForm" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="fName">Как вас зовут</label>
+          <input id="fName" type="text" placeholder="Женя" autocomplete="name">
+          <div class="err-msg">Впишите имя — мне надо как-то к вам обращаться.</div>
+        </div>
+
+        <div class="field">
+          <label for="fContact">Телеграм или телефон</label>
+          <input id="fContact" type="text" placeholder="@zhenya или +7 900 000-00-00">
+          <div class="err-msg">Нужен контакт, иначе я не отвечу.</div>
+        </div>
+
+        <div class="field">
+          <label for="fDate">Дата, когда забирать</label>
+          <input id="fDate" type="date">
+          <div class="hint" id="dateHint">Ближайшая возможная дата подставлена автоматически.</div>
+          <div class="err-msg" id="dateErr">Выберите дату.</div>
+        </div>
+
+        <div class="field">
+          <label for="fTime">Во сколько удобно</label>
+          <select id="fTime">
+            <option>11:00 – 14:00</option>
+            <option selected>14:00 – 17:00</option>
+            <option>17:00 – 21:00</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>Размер</label>
+          <div class="radio-row" id="sizeRow">
+            <input type="radio" name="size" id="s1" value="Бенто 12 см · 2–3 порции" data-price="2400" checked><label for="s1">12 см · 2 400 ₽</label>
+            <input type="radio" name="size" id="s2" value="Бенто макси 14 см · 3–4 порции" data-price="3100"><label for="s2">14 см · 3 100 ₽</label>
+            <input type="radio" name="size" id="s3" value="Круглый торт 16 см · 8–10 порций" data-price="5400"><label for="s3">16 см · 5 400 ₽</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="fFill">Начинка</label>
+          <select id="fFill">
+            <option>Малина и крем-чиз</option>
+            <option>Манго, кокос и маракуйя</option>
+            <option>Голубика и черника</option>
+            <option>Сникерс (с арахисом)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="fDecor">Декор</label>
+          <select id="fDecor">
+            <option data-price="0">Одна строчка — входит в цену</option>
+            <option data-price="300">Мелкие ромашки — +300 ₽</option>
+            <option data-price="500">Сумеречный луг — +500 ₽</option>
+            <option data-price="700">Ракушки и жемчуг — +700 ₽</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="fText">Надпись на торте</label>
+          <input id="fText" type="text" maxlength="28" placeholder="с днём рождения">
+          <div class="hint">До 28 знаков. Можно оставить пустым — сделаю чистую крышку.</div>
+        </div>
+
+        <div class="field full">
+          <label for="fNote">Что ещё мне знать</label>
+          <textarea id="fNote" placeholder="Повод, аллергии, «поменьше сладкого», нужна ли доставка и куда"></textarea>
+        </div>
+      </div>
+
+      <div class="form-foot">
+        <div class="total">Примерно выйдет <b id="total">2 400 ₽</b></div>
+        <button class="btn" type="submit">Собрать заявку</button>
+      </div>
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+      <h3>Заявка собрана</h3>
+      <p class="lead">Скопируйте текст и пришлите мне в телеграм — я отвечу в течение дня.</p>
+      <pre id="resultText"></pre>
+      <div class="result-actions">
+        <button class="btn" type="button" id="copyBtn">Скопировать текст</button>
+        <a class="btn btn-ghost" href="#" target="_blank" rel="noopener">Открыть телеграм</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap rv" id="o-mne">
+  <div class="about-grid">
+    <div class="about-ph"><img src="img/07-5654ce9a46.jpg" alt="Жёлтый бенто-торт в коробке с деревянной ложкой" loading="lazy"></div>
+    <div class="about-copy">
+      <p class="eyebrow">обо мне</p>
+      <h2>Я одна, и это не оговорка</h2>
+      <p>Кухня у меня домашняя, помощников нет, наёмных рук тоже. Один заказ в день — это не маркетинг, а физический предел: собрать, дать постоять ночь, утром украсить и никуда не торопиться.</p>
+      <p>Начинала два года назад с торта для подруги, которая провалила защиту и очень ждала, что кто-то напишет ей что-нибудь доброе. Написала на креме. С тех пор надпись для меня — главное, а торт вокруг неё.</p>
+      <p>Поэтому пишите не «нужен торт», а что случилось. Дальше я разберусь.</p>
+      <p class="sign">пеку сама</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <details>
+      <summary>Можно поменять начинку внутри одного торта?</summary>
+      <p>В 12 и 14 см — нет, слишком мало слоёв, вкусы перебьют друг друга. В 16 см можно собрать два яруса с разными начинками, доплата 400 ₽.</p>
+    </details>
+    <details>
+      <summary>А если аллергия на орехи?</summary>
+      <p>Арахис есть только в «Сникерсе», но пеку я на одной кухне, поэтому следы возможны. Если аллергия серьёзная, честнее не рисковать — так и скажу.</p>
+    </details>
+    <details>
+      <summary>Сколько нужно предоплаты и можно ли отменить?</summary>
+      <p>50% при подтверждении, остальное при получении. Отмена больше чем за 48 часов — возвращаю всё, позже — оставляю предоплату: продукты уже куплены.</p>
+    </details>
+    <details>
+      <summary>Сделаете торт по картинке из интернета?</summary>
+      <p>Сделаю похоже, но своей рукой — один в один не обещаю и не хочу. Пришлите картинку как настроение, а не как чертёж.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="brand" style="margin:0">сахарная почта<span>бенто-торты · санкт-петербург</span></div>
+    </div>
+    <div class="foot-links">
+      <a href="#nachinki">Начинки</a>
+      <a href="#ceny">Цены</a>
+      <a href="#zakaz">Заказать</a>
+      <a href="#" target="_blank" rel="noopener">Телеграм</a>
+    </div>
+    <div>Самозанятая. Работаю по одному заказу в день.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var icing = document.getElementById('icing');
+  var hero  = document.getElementById('heroText');
+  var fText = document.getElementById('fText');
+
+  function paint(v){
+    var t = (v || '').trim();
+    icing.textContent = t;
+    icing.style.opacity = t ? '1' : '0';
+    icing.style.fontSize = t.length > 18 ? 'clamp(1.1rem,2.4vw,1.65rem)' : '';
+  }
+  hero.addEventListener('input', function(){ paint(hero.value); fText.value = hero.value; });
+  fText.addEventListener('input', function(){ paint(fText.value); hero.value = fText.value; });
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click', function(){
+      hero.value = c.dataset.t; fText.value = c.dataset.t; paint(c.dataset.t);
+    });
+  });
+  fText.value = hero.value;
+
+  /* ---- dates: min +3 days, no Mondays ---- */
+  var dateEl = document.getElementById('fDate');
+  var hint = document.getElementById('dateHint');
+  var dErr = document.getElementById('dateErr');
+  function iso(d){ return d.toISOString().slice(0,10); }
+  var min = new Date(); min.setHours(12,0,0,0); min.setDate(min.getDate()+3);
+  while (min.getDay() === 1) min.setDate(min.getDate()+1);
+  dateEl.min = iso(min);
+  dateEl.value = iso(min);
+  var max = new Date(min); max.setMonth(max.getMonth()+4); dateEl.max = iso(max);
+
+  function checkDate(){
+    var f = dateEl.closest('.field');
+    if(!dateEl.value){ dErr.textContent='Выберите дату.'; f.classList.add('err'); return false; }
+    var d = new Date(dateEl.value+'T12:00:00');
+    if(d < min){ dErr.textContent='Нужно минимум три дня — ближайшая дата ' + dateEl.min.split('-').reverse().join('.') + '.'; f.classList.add('err'); return false; }
+    if(d.getDay() === 1){ dErr.textContent='По понедельникам я не пеку. Выберите соседний день.'; f.classList.add('err'); return false; }
+    f.classList.remove('err');
+    hint.textContent = 'Свободно. Подтвержу в переписке.';
+    return true;
+  }
+  dateEl.addEventListener('change', checkDate);
+
+  /* ---- price ---- */
+  var totalEl = document.getElementById('total');
+  var decorEl = document.getElementById('fDecor');
+  function money(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ') + ' ₽'; }
+  function recalc(){
+    var size = document.querySelector('input[name="size"]:checked');
+    var add = parseInt(decorEl.selectedOptions[0].dataset.price, 10) || 0;
+    totalEl.textContent = money(parseInt(size.dataset.price,10) + add);
+  }
+  document.querySelectorAll('input[name="size"]').forEach(function(r){ r.addEventListener('change', recalc); });
+  decorEl.addEventListener('change', recalc);
+  recalc();
+
+  /* ---- submit ---- */
+  var form = document.getElementById('orderForm');
+  var result = document.getElementById('result');
+  var resultText = document.getElementById('resultText');
+
+  function req(el){
+    var f = el.closest('.field');
+    if(!el.value.trim()){ f.classList.add('err'); return false; }
+    f.classList.remove('err'); return true;
+  }
+  ['fName','fContact'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', function(){ req(this); });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var ok = req(document.getElementById('fName'));
+    ok = req(document.getElementById('fContact')) && ok;
+    ok = checkDate() && ok;
+    if(!ok){ form.querySelector('.field.err input, .field.err select').focus(); return; }
+
+    var size = document.querySelector('input[name="size"]:checked');
+    var d = document.getElementById('fDate').value.split('-').reverse().join('.');
+    var note = document.getElementById('fNote').value.trim();
+    var text =
+      'Заказ на бенто-торт\n' +
+      '— имя: ' + document.getElementById('fName').value.trim() + '\n' +
+      '— связь: ' + document.getElementById('fContact').value.trim() + '\n' +
+      '— дата: ' + d + ', ' + document.getElementById('fTime').value + '\n' +
+      '— размер: ' + size.value + '\n' +
+      '— начинка: ' + document.getElementById('fFill').value + '\n' +
+      '— декор: ' + decorEl.value.split(' — ')[0] + '\n' +
+      '— надпись: ' + (fText.value.trim() ? '«' + fText.value.trim() + '»' : 'без надписи') + '\n' +
+      (note ? '— ещё: ' + note + '\n' : '') +
+      '— примерно: ' + totalEl.textContent;
+
+    resultText.textContent = text;
+    result.classList.add('show');
+    result.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  var copyBtn = document.getElementById('copyBtn');
+  copyBtn.addEventListener('click', function(){
+    var t = resultText.textContent;
+    var done = function(){ copyBtn.textContent = 'Скопировано'; setTimeout(function(){ copyBtn.textContent = 'Скопировать текст'; }, 1800); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(done, function(){ fallback(t, done); });
+    } else { fallback(t, done); }
+  });
+  function fallback(t, done){
+    var ta = document.createElement('textarea');
+    ta.value = t; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); done(); }catch(err){ copyBtn.textContent = 'Выделите текст вручную'; }
+    document.body.removeChild(ta);
+  }
+
+  /* ---- reveal ---- */
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold:.08, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+
+<!-- плашка портфолио -->
+<a href="../../design.html" id="sg-concept" style="position:fixed;left:16px;bottom:16px;z-index:2147483000;display:flex;align-items:center;gap:8px;padding:9px 14px 9px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:#0a0a10;font:500 12px/1.2 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;text-decoration:none;box-shadow:0 6px 22px rgba(0,0,0,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);letter-spacing:0;text-transform:none">
+<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M12 2.6v18.8M3.9 7.3l16.2 9.4M20.1 7.3L3.9 16.7" stroke="#4a6cf7" stroke-width="3.4"/></svg>
+<span>Концепт из портфолио Сони Граниной · бренд вымышлен</span></a>
+</body>
+</html>

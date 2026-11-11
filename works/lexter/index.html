@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ЛЕКСТЕР — юридический аутсорсинг для бизнеса</title>
+<meta name="description" content="Внешний юридический департамент: договоры, корпоративное право, суды, налоговые проверки, кадры. Москва и Санкт-Петербург.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1226;
+  --blue-950:#0A1244;
+  --blue-900:#122070;
+  --blue-800:#17278C;
+  --blue-600:#2C4FD6;
+  --accent:#2C5BF0;
+  --blue-100:#DDE6FE;
+  --blue-050:#EDF2FF;
+  --paper:#F4F7FD;
+  --line:#E2E8F5;
+  --gray:#5C6780;
+  --white:#fff;
+
+  --f:"Manrope",-apple-system,Segoe UI,Roboto,sans-serif;
+  --fm:"IBM Plex Mono",ui-monospace,monospace;
+  --wrap:1240px;
+  --gut:28px;
+  --r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--f);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+
+h1,h2,h3{font-weight:600;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:clamp(28px,3.6vw,46px)}
+h3{font-size:19px;letter-spacing:-.02em;line-height:1.3}
+.hl{color:var(--accent)}
+p{color:var(--gray)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.eyebrow.on-blue{color:#9FB2E8}
+.eyebrow.on-blue::before{background:#7E96E8}
+
+.btn{display:inline-flex;align-items:center;gap:12px;border:0;cursor:pointer;font-family:var(--f);
+  font-size:15px;font-weight:600;padding:15px 26px;border-radius:100px;transition:.22s}
+.btn i{font-style:normal;font-size:15px;transition:transform .22s}
+.btn:hover i{transform:translate(3px,-3px)}
+.btn-white{background:#fff;color:var(--blue-900)}
+.btn-white:hover{background:var(--blue-100)}
+.btn-blue{background:var(--accent);color:#fff}
+.btn-blue:hover{background:#1B45CE}
+.btn-line{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.btn-line:hover{box-shadow:inset 0 0 0 1px #fff}
+
+/* ---------- HERO ---------- */
+.stage{padding:14px var(--gut) 0}
+.hero{max-width:var(--wrap);margin:0 auto;background:var(--blue-800);border-radius:var(--r);
+  position:relative;overflow:hidden;color:#fff;display:flex;flex-direction:column}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.85;pointer-events:none}
+.b1{width:620px;height:480px;left:-160px;top:-180px;background:radial-gradient(circle,#2B45C8,transparent 68%)}
+.b2{width:760px;height:560px;right:-220px;top:-140px;background:radial-gradient(circle,#0E1A64,transparent 66%)}
+.b3{width:620px;height:460px;right:6%;bottom:-240px;background:radial-gradient(circle,#3557E0,transparent 68%)}
+.b4{width:460px;height:360px;left:20%;bottom:-180px;background:radial-gradient(circle,#0B1350,transparent 70%)}
+.curves{position:absolute;inset:0;width:100%;height:100%;opacity:.3}
+.hero>.nav,.hero>.hero-body,.hero>.hero-foot{position:relative;z-index:2}
+
+.nav{display:flex;align-items:center;gap:30px;padding:20px 34px 4px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.16em;font-size:15px}
+.logo .glyph{width:22px;height:22px;border:1.5px solid rgba(255,255,255,.75);border-radius:5px;
+  display:grid;place-items:center;font-size:10px;letter-spacing:0;font-weight:600}
+.menu{display:flex;gap:26px;margin:0 auto;font-size:14px;color:#C6D2F5}
+.menu a{padding:5px 0;border-bottom:1px solid transparent;transition:.2s}
+.menu a:hover{color:#fff;border-color:rgba(255,255,255,.6)}
+.nav-tel{font-family:var(--fm);font-size:13px;color:#fff}
+.burger{display:none;background:none;border:1px solid rgba(255,255,255,.35);color:#fff;
+  width:42px;height:38px;border-radius:8px;font-size:17px;cursor:pointer}
+
+.hero-body{display:grid;grid-template-columns:1.35fr .65fr;gap:44px;align-items:center;padding:18px 34px 30px}
+.hero h1{font-size:clamp(32px,4.2vw,52px);font-weight:600;letter-spacing:-.035em;margin:14px 0 18px;max-width:17ch}
+.hero-sub{color:#BCC9F0;font-size:16.5px;max-width:52ch}
+.hero-actions{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:26px 24px}
+.hero-card .hc-t{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:#9FB2E8;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.2);margin-bottom:16px}
+.hero-card ul{list-style:none;font-size:14px}
+.hero-card li{position:relative;padding-left:20px;margin-bottom:10px;color:#D3DCF5}
+.hero-card li::before{content:"✓";position:absolute;left:0;color:#8FA9F5;font-size:12px}
+.hero-card .hc-f{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2);
+  font-size:12.5px;color:#9FB2E8}
+.hero-foot{display:flex;justify-content:space-between;align-items:center;padding:18px 34px 22px;
+  border-top:1px solid rgba(255,255,255,.16);
+  font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8FA2DC}
+
+/* ---------- секции ---------- */
+.sec{padding:84px 0}
+.head{display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:start;margin-bottom:46px}
+.head h2{max-width:20ch}
+.head .aside{padding-top:8px}
+.head p{margin-top:20px;max-width:64ch;font-size:16.5px}
+
+/* статистика */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding:40px 0 0;border-top:1px solid var(--line)}
+.stat b{display:block;font-size:clamp(32px,3.6vw,46px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.stat span{display:block;margin-top:10px;font-size:13.5px;color:var(--gray)}
+
+/* услуги */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{border-radius:var(--r);padding:30px 28px;display:flex;flex-direction:column;min-height:330px;
+  transition:transform .25s}
+.card:hover{transform:translateY(-5px)}
+.card .ic{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;margin-bottom:auto;font-size:17px}
+.card h3{margin:34px 0 12px}
+.card ul{list-style:none;font-size:13.5px;line-height:1.55}
+.card li{padding-left:15px;position:relative;margin-bottom:7px}
+.card li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:1.5px}
+.card .price{margin-top:20px;padding-top:16px;font-family:var(--fm);font-size:13.5px}
+.c-dark{background:var(--blue-800);color:#fff}
+.c-dark .ic{background:rgba(255,255,255,.12);color:#fff}
+.c-dark li{color:#B9C6EE}
+.c-dark li::before{background:#7E96E8}
+.c-dark .price{border-top:1px solid rgba(255,255,255,.2);color:#fff}
+.c-light{background:var(--blue-100);color:var(--ink)}
+.c-light .ic{background:rgba(23,39,140,.1);color:var(--blue-800)}
+.c-light li{color:#4A5678}
+.c-light li::before{background:var(--blue-600)}
+.c-light .price{border-top:1px solid rgba(23,39,140,.18);color:var(--blue-800)}
+
+/* тарифы */
+.sec-white{background:#fff}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.plan{border:1px solid var(--line);border-radius:var(--r);padding:32px 28px;background:#fff;position:relative}
+.plan.mark{background:var(--blue-900);border-color:var(--blue-900);color:#fff}
+.plan .kind{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+.plan.mark .kind{color:#9FB2E8}
+.plan h3{margin:12px 0 20px;font-size:22px}
+.plan .amt{font-size:38px;font-weight:600;letter-spacing:-.04em;line-height:1}
+.plan .per{font-size:13.5px;color:var(--gray);margin:10px 0 24px}
+.plan.mark .per{color:#A7B6E4}
+.plan ul{list-style:none;font-size:14.5px;border-top:1px solid var(--line);padding-top:22px}
+.plan.mark ul{border-color:rgba(255,255,255,.2)}
+.plan li{position:relative;padding-left:24px;margin-bottom:11px;color:var(--gray)}
+.plan.mark li{color:#C3CFEF}
+.plan li::before{content:"→";position:absolute;left:0;color:var(--accent);font-size:13px}
+.plan.mark li::before{color:#8FA9F5}
+.plan .btn{width:100%;justify-content:center;margin-top:26px}
+.tag{position:absolute;top:18px;right:18px;background:var(--accent);color:#fff;font-family:var(--fm);
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:100px}
+.note{margin-top:26px;font-size:14px;color:var(--gray);max-width:80ch}
+
+/* процесс */
+.arrow{width:56px;height:56px;stroke:var(--accent);stroke-width:1.4;fill:none;margin-bottom:22px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.step{background:#fff;padding:32px 26px}
+.step .n{font-family:var(--fm);font-size:11px;letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
+.step h3{margin:18px 0 10px}
+.step p{font-size:14px}
+
+/* отрасли — синяя плитка */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.18);
+  border-radius:var(--r);overflow:hidden}
+.tile{background:var(--blue-800);padding:26px 24px;min-height:148px;display:flex;flex-direction:column;
+  justify-content:space-between;transition:background .25s}
+.tile:hover{background:var(--blue-600)}
+.tile .t{font-family:var(--fm);font-size:11px;letter-spacing:.12em;color:#8FA2DC}
+.tile b{display:block;font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;color:#fff}
+.tile span.d{font-size:13.5px;color:#B9C6EE}
+.band{background:var(--blue-950);border-radius:var(--r);padding:44px 42px 46px;color:#fff;position:relative;overflow:hidden}
+.band h2{color:#fff}
+.band>.b-head,.band>.tiles{position:relative;z-index:2}
+.band .b-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:30px;align-items:end}
+.band p{color:#B9C6EE}
+
+/* команда */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.person{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.p-top{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--blue-950)}
+.p-top img{width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(1) contrast(1.06) brightness(1.02);transition:filter .4s,transform .5s}
+.person:hover .p-top img{filter:grayscale(.15) contrast(1.02);transform:scale(1.03)}
+.p-top::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,68,.12),rgba(10,18,68,.34));
+  mix-blend-mode:multiply;pointer-events:none}
+.person .p-body{padding:26px 26px 30px}
+.person .role{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin:8px 0 14px}
+.person p{font-size:14px}
+
+/* FAQ */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:24px 48px 24px 0;position:relative;
+  font-size:19px;font-weight:600;letter-spacing:-.02em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:8px;top:21px;color:var(--accent);font-size:22px;font-weight:400}
+.faq details[open] summary::after{content:"−"}
+.faq .ans{padding:0 60px 26px 0;color:var(--gray);font-size:15.5px}
+
+/* форма */
+.appt{background:var(--blue-800);border-radius:var(--r);color:#fff;position:relative;overflow:hidden}
+.appt>.appt-in{position:relative;z-index:2}
+.appt-in{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;padding:46px 44px 48px}
+.appt h2{color:#fff;margin:16px 0 14px}
+.appt .lead{color:#BCC9F0;font-size:16.5px}
+.contacts{margin-top:28px;border-top:1px solid rgba(255,255,255,.22);padding-top:26px;display:grid;gap:18px}
+.contacts .row{display:grid;grid-template-columns:120px 1fr;gap:18px;font-size:14.5px}
+.contacts dt{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#8FA2DC;padding-top:3px}
+.contacts dd{color:#DCE4F7}
+.contacts a{border-bottom:1px solid rgba(255,255,255,.35)}
+.contacts a:hover{border-color:#fff}
+
+.formbox{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:30px 30px 32px}
+.form-title{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9FB2E8;
+  padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.18);margin-bottom:26px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.fld{margin-bottom:22px}
+.fld label{display:block;font-size:12px;letter-spacing:.02em;color:#A7B6E4;margin-bottom:8px}
+.fld input,.fld select,.fld textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.35);
+  padding:9px 0;color:#fff;font-family:var(--f);font-size:15px;transition:border-color .2s}
+.fld textarea{resize:vertical;min-height:60px}
+.fld input::placeholder,.fld textarea::placeholder{color:rgba(255,255,255,.4)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-bottom-color:#fff}
+.fld select option{color:#0C1226}
+.fld .err{border-bottom-color:#FF9E8F}
+.hint{font-size:12px;color:#8FA2DC;margin-top:8px}
+.consent{display:flex;gap:11px;align-items:flex-start;font-size:12.5px;color:#A7B6E4;margin:4px 0 24px}
+.consent input{width:16px;height:16px;flex:none;margin-top:2px;accent-color:#fff}
+.formbox .btn{width:100%;justify-content:center}
+.f-foot{margin-top:16px;font-size:12px;color:#8FA2DC;text-align:center}
+.ok{display:none;text-align:center;padding:26px 6px}
+.ok .m{width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,.5);display:grid;
+  place-items:center;margin:0 auto 20px;font-size:22px}
+.ok h3{font-size:22px;margin-bottom:12px}
+.ok p{color:#BCC9F0;font-size:15px}
+.ok .ref{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2);
+  font-family:var(--fm);font-size:13px;color:#fff}
+
+/* подвал */
+.foot{background:var(--blue-950);color:#9FB2E8;margin-top:14px;border-radius:var(--r) var(--r) 0 0;padding:64px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:40px;padding-bottom:44px;
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.foot h4{color:#fff;font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:18px}
+.foot ul{list-style:none;font-size:14px}
+.foot li{margin-bottom:10px}
+.foot a:hover{color:#fff}
+.foot .lg{color:#fff;font-weight:700;letter-spacing:.16em;font-size:16px;margin-bottom:16px;display:block}
+.foot .req{font-size:13px;line-height:1.8}
+.foot-bot{display:flex;justify-content:space-between;gap:20px;padding-top:26px;font-size:12.5px;flex-wrap:wrap}
+
+.rv{opacity:1;transform:none}
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+@media (max-width:1000px){
+  .cards,.plans,.team,.tiles{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .appt-in,.band .b-head{grid-template-columns:1fr;gap:38px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .head{grid-template-columns:1fr;gap:16px}
+  .stats{grid-template-columns:1fr 1fr;gap:26px}
+}
+@media (max-width:720px){
+  :root{--gut:18px}
+  .menu{display:none;position:absolute;top:70px;left:14px;right:14px;flex-direction:column;gap:0;
+    background:var(--blue-950);border-radius:14px;padding:10px 20px;z-index:9}
+  .menu.open{display:flex}
+  .menu a{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav-tel{display:none}
+  .burger{display:block;margin-left:auto}
+  .nav{padding:18px 20px}
+  .hero-body{padding:22px 20px 28px;grid-template-columns:1fr;gap:28px}
+  .hero-foot{padding:14px 20px 18px;font-size:10px;gap:12px}
+  
+  .sec{padding:64px 0}
+  .cards,.plans,.team,.tiles,.steps,.grid2{grid-template-columns:1fr}
+  .appt-in{padding:34px 20px 38px}
+  .band{padding:32px 20px 34px}
+  .formbox{padding:26px 20px}
+  .contacts .row{grid-template-columns:1fr;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<div class="stage" id="top">
+  <header class="hero">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+    <svg class="curves" viewBox="0 0 1200 640" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="none" stroke="#8FA9F5" stroke-width="1" opacity=".5">
+        <path d="M-50 470 C 240 300 420 560 700 350 S 1080 120 1260 230"/>
+        <path d="M-50 530 C 260 370 440 610 720 400 S 1090 180 1260 290"/>
+        <path d="M-50 590 C 280 440 460 660 740 450 S 1100 240 1260 350"/>
+        <path d="M-50 180 C 200 60 380 300 640 140 S 1000 -40 1260 60"/>
+      </g>
+    </svg>
+
+    <nav class="nav">
+      <a class="logo" href="#top"><span class="glyph">Л</span>ЛЕКСТЕР</a>
+      <div class="menu" id="menu">
+        <a href="#services">Услуги</a><a href="#tariffs">Тарифы</a><a href="#process">Порядок работы</a>
+        <a href="#team">Команда</a><a href="#faq">Вопросы</a><a href="#appt">Контакты</a>
+      </div>
+      <a class="nav-tel" href="tel:+74950000000">+7 495 000-00-00</a>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="menu">☰</button>
+    </nav>
+
+    <div class="hero-body">
+      <div>
+        <span class="eyebrow on-blue">Юридический аутсорсинг</span>
+        <h1>Юридический департамент вашей компании — без штата</h1>
+        <p class="hero-sub">Берём на себя договоры, корпоративные процедуры, суды, налоговые проверки и трудовые споры. Вы платите фиксированную сумму в месяц и получаете команду профильных юристов вместо одного штатного специалиста.</p>
+        <div class="hero-actions">
+          <a class="btn btn-white" href="#appt">Записаться на консультацию <i>↗</i></a>
+          <a class="btn btn-line" href="#tariffs">Тарифы и цены</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="hc-t">Бесплатный правовой аудит</div>
+        <ul>
+          <li>До десяти действующих договоров</li>
+          <li>Устав и корпоративные документы</li>
+          <li>Кадровый документооборот</li>
+          <li>Открытые судебные дела</li>
+        </ul>
+        <div class="hc-f">Отчёт на 6–8 страницах за три рабочих дня. Остаётся у вас в любом случае.</div>
+      </aside>
+    </div>
+
+    <div class="hero-foot">
+      <span>С 2011 года · Москва и Санкт-Петербург</span>
+      <span>210+ компаний на обслуживании</span>
+    </div>
+  </header>
+</div>
+
+<main>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="aside"><span class="eyebrow">О компании</span></div>
+      <div>
+        <h2>Мы не просто консультируем — <span class="hl">мы закрываем правовой контур бизнеса</span></h2>
+        <p>ООО «Лекстер» ведёт юридическую функцию компаний целиком: от типовых договоров до защиты в арбитраже и на выездных проверках. Клиент получает регламент, сроки реакции и одного ответственного партнёра — вместо переписки с разными подрядчиками по каждой задаче.</p>
+      </div>
+    </div>
+    <div class="stats rv">
+      <div class="stat"><b>15</b><span>лет практики</span></div>
+      <div class="stat"><b>210+</b><span>компаний на обслуживании</span></div>
+      <div class="stat"><b>86 %</b><span>дел выиграно в судах</span></div>
+      <div class="stat"><b>4 часа</b><span>средний срок ответа</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white" id="services">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="aside"><span class="eyebrow">Услуги</span></div>
+      <div>
+        <h2><span class="hl">Полное юридическое сопровождение</span> компаний любого масштаба</h2>
+        <p>Работаем по отдельным направлениям или ведём всё сразу. Цены базовые — итоговая стоимость фиксируется в приложении к договору после бесплатного аудита.</p>
+      </div>
+    </div>
+
+    <div class="cards rv">
+      <article class="card c-dark">
+        <div class="ic">◈</div>
+        <h3>Абонентское обслуживание</h3>
+        <ul>
+          <li>Выделенный юрист и его заместитель</li>
+          <li>Устные и письменные заключения</li>
+          <li>Переписка с контрагентами и госорганами</li>
+          <li>Ежемесячный отчёт по часам</li>
+        </ul>
+        <div class="price">от 45 000 ₽ / месяц</div>
+      </article>
+
+      <article class="card c-light">
+        <div class="ic">◎</div>
+        <h3>Договорная работа</h3>
+        <ul>
+          <li>Протокол разногласий за один день</li>
+          <li>Матрица рисков по каждой сделке</li>
+          <li>Библиотека типовых форм под ваши процессы</li>
+          <li>Шаблоны для отдела продаж</li>
+        </ul>
+        <div class="price">от 6 000 ₽ / документ</div>
+      </article>
+
+      <article class="card c-dark">
+        <div class="ic">◫</div>
+        <h3>Корпоративное право и сделки</h3>
+        <ul>
+          <li>Due diligence и отчёт для инвестора</li>
+          <li>Уставы, доли, корпоративный договор</li>
+          <li>Реорганизация и продажа бизнеса</li>
+          <li>Сопровождение у нотариуса и в ФНС</li>
+        </ul>
+        <div class="price">от 90 000 ₽ / проект</div>
+      </article>
+
+      <article class="card c-light">
+        <div class="ic">✳</div>
+        <h3>Претензии и судебные споры</h3>
+        <ul>
+          <li>Оценка перспектив до подачи иска</li>
+          <li>Взыскание задолженности, подряд, поставка</li>
+          <li>Банкротные дела и субсидиарная ответственность</li>
+          <li>Возможен гонорар успеха</li>
+        </ul>
+        <div class="price">от 35 000 ₽ + % от взысканного</div>
+      </article>
+
+      <article class="card c-dark">
+        <div class="ic">◐</div>
+        <h3>Трудовое право и кадры</h3>
+        <ul>
+          <li>Аудит кадрового документооборота</li>
+          <li>Увольнения без последующих исков</li>
+          <li>Локальные акты и должностные инструкции</li>
+          <li>Защита при проверке инспекции труда</li>
+        </ul>
+        <div class="price">от 25 000 ₽ / месяц</div>
+      </article>
+
+      <article class="card c-light">
+        <div class="ic">◇</div>
+        <h3>Налоги и проверки</h3>
+        <ul>
+          <li>Подготовка к выездной проверке заранее</li>
+          <li>Ответы на требования и пояснения</li>
+          <li>Юрист присутствует на допросах</li>
+          <li>Досудебное обжалование в УФНС</li>
+        </ul>
+        <div class="price">от 55 000 ₽ / процедура</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tariffs">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="aside"><span class="eyebrow">Тарифы</span></div>
+      <div>
+        <h2>Три формата обслуживания <span class="hl">с фиксированной ценой</span></h2>
+        <p>Тариф можно менять раз в квартал, неиспользованные часы переносятся на следующий месяц. Договор расторгается по уведомлению за 30 дней без штрафов.</p>
+      </div>
+    </div>
+
+    <div class="plans rv">
+      <div class="plan">
+        <span class="kind">Тариф 01</span>
+        <h3>Базовый</h3>
+        <div class="amt">45 000 ₽</div>
+        <div class="per">в месяц, НДС не облагается</div>
+        <ul>
+          <li>До 10 часов работы юриста</li>
+          <li>Один профильный специалист</li>
+          <li>Ответ в течение 24 рабочих часов</li>
+          <li>Проверка до пяти договоров</li>
+          <li>Консультации по электронной почте</li>
+        </ul>
+        <a class="btn btn-blue" href="#appt">Выбрать базовый</a>
+      </div>
+
+      <div class="plan mark">
+        <span class="tag">Чаще выбирают</span>
+        <span class="kind">Тариф 02</span>
+        <h3>Корпоративный</h3>
+        <div class="amt">120 000 ₽</div>
+        <div class="per">в месяц, НДС не облагается</div>
+        <ul>
+          <li>До 40 часов работы команды</li>
+          <li>Три юриста: договоры, суд, кадры</li>
+          <li>Ответ в течение 4 рабочих часов</li>
+          <li>Договоры без ограничения по количеству</li>
+          <li>Два судебных дела в год включены</li>
+          <li>Связь в мессенджере и по телефону</li>
+        </ul>
+        <a class="btn btn-white" href="#appt">Выбрать корпоративный</a>
+      </div>
+
+      <div class="plan">
+        <span class="kind">Тариф 03</span>
+        <h3>Департамент</h3>
+        <div class="amt">от 260 000 ₽</div>
+        <div class="per">в месяц, по соглашению сторон</div>
+        <ul>
+          <li>Без лимита часов в согласованном контуре</li>
+          <li>Ведущий партнёр как куратор</li>
+          <li>Ответ в течение одного рабочего часа</li>
+          <li>Юрист в вашем офисе два дня в неделю</li>
+          <li>Суды и проверки без доплаты</li>
+          <li>Отдельное соглашение об уровне сервиса</li>
+        </ul>
+        <a class="btn btn-blue" href="#appt">Обсудить условия</a>
+      </div>
+    </div>
+    <p class="note rv">Оплата по счёту до 5-го числа расчётного месяца. Для компаний с оборотом свыше 500 млн ₽ и групп юридических лиц стоимость рассчитывается индивидуально.</p>
+  </div>
+</section>
+
+<section class="sec sec-white" id="process">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="aside">
+        <span class="eyebrow">Порядок работы</span>
+        <svg class="arrow" viewBox="0 0 40 40" aria-hidden="true" style="margin-top:22px">
+          <path d="M8 8 L32 32 M32 14 L32 32 L14 32"/>
+        </svg>
+      </div>
+      <div>
+        <h2>От заявки до первого рабочего дня юриста — <span class="hl">около недели</span></h2>
+        <p>Все этапы до подписания договора бесплатны, отчёт по аудиту остаётся у вас независимо от решения.</p>
+      </div>
+    </div>
+    <div class="steps rv">
+      <div class="step"><span class="n">Этап 01</span><h3>Заявка и созвон</h3><p>Уточняем сферу деятельности, штат, текущие задачи и болевые точки. Занимает 30–40 минут.</p></div>
+      <div class="step"><span class="n">Этап 02</span><h3>Правовой аудит</h3><p>Смотрим договоры, уставные и кадровые документы, судебную историю. Отчёт с рисками за три дня.</p></div>
+      <div class="step"><span class="n">Этап 03</span><h3>Договор и регламент</h3><p>Фиксируем объём работ, сроки реакции, состав команды и порядок отчётности.</p></div>
+      <div class="step"><span class="n">Этап 04</span><h3>Работа и отчёт</h3><p>Юрист выходит на связь в первый рабочий день. В конце месяца — акт и расшифровка по задачам.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="band rv">
+      <div class="blob b1" style="opacity:.5"></div>
+      <div class="b-head">
+        <div>
+          <span class="eyebrow on-blue">Отраслевая специализация</span>
+          <h2 style="margin-top:20px">С кем мы работаем</h2>
+        </div>
+        <p>Держим отдельные практики под отрасли с собственным регулированием — это сокращает время на погружение и снижает цену ошибки. Не берёмся за уголовные дела, семейное право и споры физических лиц.</p>
+      </div>
+      <div class="tiles">
+        <div class="tile"><span class="t">01</span><span><b>Оптовая торговля</b><span class="d">Поставка, логистика, взыскание дебиторской задолженности</span></span></div>
+        <div class="tile"><span class="t">02</span><span><b>Строительство и подряд</b><span class="d">Договоры подряда, споры по КС-2, гарантийные удержания</span></span></div>
+        <div class="tile"><span class="t">03</span><span><b>ИТ и разработка</b><span class="d">Лицензии, права на код, обработка персональных данных</span></span></div>
+        <div class="tile"><span class="t">04</span><span><b>Производство</b><span class="d">Промышленная безопасность, охрана труда, сертификация</span></span></div>
+        <div class="tile"><span class="t">05</span><span><b>Медицинские центры</b><span class="d">Лицензирование, Росздравнадзор, споры с пациентами</span></span></div>
+        <div class="tile"><span class="t">06</span><span><b>Ретейл и общепит</b><span class="d">Аренда, Роспотребнадзор, работа с самозанятыми</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-white" id="team">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="aside"><span class="eyebrow">Команда</span></div>
+      <div>
+        <h2>Задачу ведёт юрист, <span class="hl">но отвечает за результат партнёр</span></h2>
+        <p>Прямые контакты партнёра направления вы получаете при подписании договора.</p>
+      </div>
+    </div>
+    <div class="team rv">
+      <div class="person">
+        <div class="p-top"><img src="img/01-c4969967fc.jpg" alt="Игнатьев Андрей Викторович, управляющий партнёр" loading="lazy"></div>
+        <div class="p-body">
+          <h3>Игнатьев Андрей Викторович</h3>
+          <div class="role">Управляющий партнёр</div>
+          <p>18 лет в корпоративном праве. Сопровождал более 40 сделок по покупке долей и входу инвесторов в производственные компании. МГЮА, 2007.</p>
+        </div>
+      </div>
+      <div class="person">
+        <div class="p-top"><img src="img/02-674859ae00.jpg" alt="Соколова Марина Дмитриевна, партнёр налоговой практики" loading="lazy"></div>
+        <div class="p-body">
+          <h3>Соколова Марина Дмитриевна</h3>
+          <div class="role">Партнёр · налоговая практика</div>
+          <p>Кандидат юридических наук. 11 лет защищает компании при выездных проверках, снятые доначисления — свыше 700 млн ₽. СПбГУ, 2013.</p>
+        </div>
+      </div>
+      <div class="person">
+        <div class="p-top"><img src="img/03-3821bc3739.jpg" alt="Гринберг Даниил Олегович, руководитель судебной практики" loading="lazy"></div>
+        <div class="p-body">
+          <h3>Гринберг Даниил Олегович</h3>
+          <div class="role">Руководитель судебной практики</div>
+          <p>Более 300 арбитражных дел, специализация — подряд и банкротство. Ведёт споры во всех инстанциях, включая Верховный Суд. УрГЮУ, 2011.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="aside"><span class="eyebrow">Вопросы</span></div>
+      <div><h2>Что спрашивают <span class="hl">до подписания договора</span></h2></div>
+    </div>
+    <div class="faq rv">
+      <details open>
+        <summary>Чем аутсорсинг выгоднее штатного юриста?</summary>
+        <div class="ans">Штатный юрист с опытом обходится компании в 180–250 тысяч рублей в месяц с учётом налогов, рабочего места и отпуска — и он один, со своей узкой специализацией. За 120 тысяч вы получаете команду, где договорами, судами и кадрами занимаются разные люди, а отпуск и болезнь одного из них на вас не отражаются.</div>
+      </details>
+      <details>
+        <summary>Кто отвечает, если юрист ошибся?</summary>
+        <div class="ans">Ответственность несёт ООО «Лекстер» как исполнитель по договору. Профессиональная ответственность застрахована на 30 миллионов рублей, порядок возмещения описан в разделе 6 договора.</div>
+      </details>
+      <details>
+        <summary>Как обеспечивается конфиденциальность?</summary>
+        <div class="ans">Соглашение о неразглашении подписывается до передачи любых документов, включая этап бесплатного аудита. Документы хранятся на серверах в России, доступ есть только у юристов вашего проекта.</div>
+      </details>
+      <details>
+        <summary>Работаете ли вы с компаниями из других регионов?</summary>
+        <div class="ans">Да. Офисы в Москве и Санкт-Петербурге, около трети клиентов — из других регионов. Документооборот ведём через ЭДО, в судах по месту спора работают юристы из партнёрской сети в 14 городах.</div>
+      </details>
+      <details>
+        <summary>Что входит в бесплатный правовой аудит?</summary>
+        <div class="ans">Проверяем до десяти действующих договоров, устав, кадровые документы и открытые судебные дела компании. На выходе — отчёт на 6–8 страницах с перечнем рисков и оценкой стоимости их устранения.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0" id="appt">
+  <div class="wrap">
+    <div class="appt rv">
+      <div class="blob b3" style="right:-200px;bottom:-320px;opacity:.6"></div>
+      <div class="appt-in">
+        <div>
+          <span class="eyebrow on-blue">Запись на консультацию</span>
+          <h2>Разберём вашу ситуацию за 40 минут</h2>
+          <p class="lead">Встреча проходит в офисе или по видеосвязи. Скажем прямо, нужен ли вам аутсорсинг вообще — иногда достаточно один раз навести порядок в документах.</p>
+          <dl class="contacts">
+            <div class="row"><dt>Москва</dt><dd><a href="tel:+74950000000">+7 495 000-00-00</a><br>125167, Ленинградский пр-т, 39, стр. 80, офис 1204</dd></div>
+            <div class="row"><dt>Петербург</dt><dd><a href="tel:+78120000000">+7 812 000-00-00</a><br>191186, наб. реки Мойки, 36, офис 505</dd></div>
+            <div class="row"><dt>По России</dt><dd><a href="tel:88000000000">8 800 000-00-00</a> — звонок бесплатный</dd></div>
+            <div class="row"><dt>Почта</dt><dd><a href="mailto:client@lexter.example">client@lexter.example</a> — клиенты<br><a href="mailto:info@lexter.example">info@lexter.example</a> — общие вопросы</dd></div>
+            <div class="row"><dt>Часы работы</dt><dd>Пн–пт, 09:00–20:00 (МСК)</dd></div>
+          </dl>
+        </div>
+
+        <div class="formbox">
+          <div id="formBody">
+            <div class="form-title">Форма записи · ответим в течение рабочего часа</div>
+            <div class="grid2">
+              <div class="fld"><label for="fio">Фамилия и имя *</label><input id="fio" type="text" placeholder="Иванов Сергей" autocomplete="name"></div>
+              <div class="fld"><label for="company">Компания *</label><input id="company" type="text" placeholder="ООО «Ромашка»" autocomplete="organization"></div>
+            </div>
+            <div class="grid2">
+              <div class="fld"><label for="phone">Телефон *</label><input id="phone" type="tel" placeholder="+7 999 000-00-00" autocomplete="tel"></div>
+              <div class="fld"><label for="email">Электронная почта *</label><input id="email" type="email" placeholder="s.ivanov@company.ru" autocomplete="email"></div>
+            </div>
+            <div class="fld">
+              <label for="topic">Направление *</label>
+              <select id="topic">
+                <option value="">Выберите из списка</option>
+                <option>Абонентское обслуживание</option>
+                <option>Договорная работа</option>
+                <option>Корпоративное право и сделки</option>
+                <option>Претензии и судебные споры</option>
+                <option>Трудовое право и кадры</option>
+                <option>Налоги и проверки</option>
+                <option>Пока не определился</option>
+              </select>
+            </div>
+            <div class="grid2">
+              <div class="fld"><label for="date">Удобная дата *</label><input id="date" type="date"></div>
+              <div class="fld">
+                <label for="time">Время</label>
+                <select id="time">
+                  <option>09:00 — 11:00</option><option selected>11:00 — 13:00</option>
+                  <option>14:00 — 16:00</option><option>16:00 — 18:00</option><option>18:00 — 20:00</option>
+                </select>
+              </div>
+            </div>
+            <div class="fld">
+              <label for="comment">Суть вопроса</label>
+              <textarea id="comment" placeholder="Кратко опишите ситуацию — юрист подготовится заранее"></textarea>
+              <div class="hint">Не прикладывайте документы до подписания соглашения о неразглашении.</div>
+            </div>
+            <label class="consent" for="agree">
+              <input id="agree" type="checkbox">
+              <span>Согласен на обработку персональных данных в соответствии с политикой конфиденциальности ООО «Лекстер».</span>
+            </label>
+            <button class="btn btn-white" id="send" type="button">Отправить заявку <i>↗</i></button>
+            <div class="f-foot">Заявка ни к чему не обязывает.</div>
+          </div>
+
+          <div class="ok" id="ok">
+            <div class="m">✓</div>
+            <h3>Заявка принята</h3>
+            <p>Юрист приёмной свяжется с вами по указанному телефону в течение рабочего часа, чтобы подтвердить дату и формат встречи.</p>
+            <div class="ref" id="ref"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="lg">ЛЕКСТЕР</span>
+        <div class="req">
+          ООО «Лекстер»<br>
+          ИНН 0000000000 · КПП 000000000<br>
+          ОГРН 0000000000000<br>
+          Р/с 00000000000000000000<br>
+          Член Ассоциации юристов России
+        </div>
+      </div>
+      <div>
+        <h4>Услуги</h4>
+        <ul>
+          <li><a href="#services">Абонентское обслуживание</a></li>
+          <li><a href="#services">Договорная работа</a></li>
+          <li><a href="#services">Корпоративное право</a></li>
+          <li><a href="#services">Судебные споры</a></li>
+          <li><a href="#services">Налоги и проверки</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <ul>
+          <li><a href="#process">Порядок работы</a></li>
+          <li><a href="#tariffs">Тарифы</a></li>
+          <li><a href="#team">Партнёры</a></li>
+          <li><a href="#faq">Вопросы и ответы</a></li>
+          <li><a href="#appt">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Связаться</h4>
+        <ul>
+          <li><a href="tel:+74950000000">+7 495 000-00-00</a> — Москва</li>
+          <li><a href="tel:+78120000000">+7 812 000-00-00</a> — Петербург</li>
+          <li><a href="tel:88000000000">8 800 000-00-00</a> — по России</li>
+          <li><a href="mailto:client@lexter.example">client@lexter.example</a></li>
+          <li><a href="mailto:press@lexter.example">press@lexter.example</a> — для СМИ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2011–2026 ООО «Лекстер». Все права защищены.</span>
+      <span>Политика конфиденциальности · Публичная оферта · Согласие на обработку данных</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',function(){
+    var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o?'true':'false');
+  });
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+
+  var di=document.getElementById('date'),d=new Date();
+  di.min=d.toISOString().slice(0,10);
+  d.setDate(d.getDate()+2);
+  di.value=d.toISOString().slice(0,10);
+
+  var req=['fio','company','phone','email','topic','date'];
+  req.forEach(function(id){
+    var el=document.getElementById(id);
+    ['input','change'].forEach(function(ev){el.addEventListener(ev,function(){el.classList.remove('err');});});
+  });
+
+  document.getElementById('send').addEventListener('click',function(){
+    var bad=false,first=null;
+    req.forEach(function(id){
+      var el=document.getElementById(id),v=el.value.trim(),ok=v!=='';
+      if(id==='email')ok=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+      if(id==='phone')ok=v.replace(/\D/g,'').length>=10;
+      if(!ok){el.classList.add('err');bad=true;if(!first)first=el;}
+    });
+    var ag=document.getElementById('agree');
+    if(!ag.checked){bad=true;if(!first)first=ag;}
+    if(bad){first.focus();return;}
+    document.getElementById('ref').textContent='Номер заявки: ЛКС-'+new Date().getFullYear()+'-'+(Math.floor(Math.random()*9000)+1000);
+    document.getElementById('formBody').style.display='none';
+    document.getElementById('ok').style.display='block';
+  });
+
+  var rv=document.querySelectorAll('.rv');
+  function showAll(){rv.forEach(function(el){el.classList.add('in');});}
+  if('IntersectionObserver' in window){
+    document.documentElement.classList.add('js');
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0,rootMargin:'0px 0px -5% 0px'});
+    rv.forEach(function(el){io.observe(el);});
+    setTimeout(showAll,1400);
+    window.addEventListener('load',showAll);
+  }
+})();
+</script>
+
+<!-- плашка портфолио -->
+<a href="../../design.html" id="sg-concept" style="position:fixed;left:16px;bottom:16px;z-index:2147483000;display:flex;align-items:center;gap:8px;padding:9px 14px 9px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:#0a0a10;font:500 12px/1.2 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;text-decoration:none;box-shadow:0 6px 22px rgba(0,0,0,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);letter-spacing:0;text-transform:none">
+<svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M12 2.6v18.8M3.9 7.3l16.2 9.4M20.1 7.3L3.9 16.7" stroke="#4a6cf7" stroke-width="3.4"/></svg>
+<span>Концепт из портфолио Сони Граниной · бренд вымышлен</span></a>
+</body>
+</html>
